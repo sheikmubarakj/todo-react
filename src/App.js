@@ -1,26 +1,38 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import AddItem from './components/Additem';
+import ListItems from './components/ListItems';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+class TodoApp extends React.Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      data: [
+        {
+          id: 0, name: 'ABC'
+        }, 
+        {
+          id: 1, name: 'BEF'
+        }
+      ]
+    }
+  }
 
-export default App;
+  addItem = (item) => {
+   this.setState(state => ({
+    data: [...state.data, {id: this.state.data.length, name: item}]
+   }));
+  };
+
+  render () {
+    return (<div>
+      <AddItem addItem={this.addItem}/>
+      {this.state.data.map((item, index) => {
+        return <ListItems key={index} item={item}/>
+      })}
+    </div>)
+  }
+};
+
+export default TodoApp;
