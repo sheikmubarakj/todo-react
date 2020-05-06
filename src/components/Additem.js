@@ -18,13 +18,15 @@ class AddItem extends React.Component {
         e.preventDefault();
         if (!this.state.item) return;
         this.props.addItem(this.state.item); 
-        this.state.item = '';
+        this.setState({
+            item: ''
+        });
     };
 
     render() {
         return (<form onSubmit={this.handleSubmit}>
             <input type="text" className='input' onChange={this.onChangeValue} value={this.state.item} placeholder="Add new Item" />
-            <button className='button' onClick={() => {this.props.addItem(this.state.item); this.state.item = ''}}>+</button>
+            <button className='button'>+</button>
         </form>)
     }
 }

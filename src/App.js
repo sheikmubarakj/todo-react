@@ -26,6 +26,9 @@ class TodoApp extends React.Component {
     this.state.data.find((item) => {
       if (item.id === _item.id) {
         item.isStriked = !_item.isStriked;
+        return true;
+      } else {
+        return false
       }
     });
     this.setState(state => ({
